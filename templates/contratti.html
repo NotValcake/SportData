@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SportData</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">
+          <i class="bi bi-clipboard2-check-fill"> </i>SportData</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link" href="/">Home</a>
+              <a class="nav-link" href="/atleti">Atleti</a>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Staff
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/allenatori">Allenatori</a></li>
+                  <li><a class="dropdown-item" href="/accompagnatori">Accompagantori</a></li>
+                  <li><a class="dropdown-item" href="/volontari">Volontari</a></li>
+                </ul>
+              </li>
+              <a class="nav-link" href="/sponsor">Sponsor</a>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Pagamenti
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/pagamenti_allenatori">Allenatori</a></li>
+                  <li><a class="dropdown-item" href="/pagamenti_atleti">Atleti</a></li>
+                  <li><a class="dropdown-item" href="/pagamenti_sponsor">Sponsor</a></li>
+                </ul>
+              </li>
+              <a class="nav-link" href="/medico">Medico</a>
+              <a class="nav-link" href="/eventi">Eventi</a>
+              <a class="nav-link active" href="/contratti">Contratti</a>
+            </div>
+          </div>
+        </div>
+    </nav>
+    <form method="POST" class="m-5">
+      <div class="form-group">
+        <label for="num">#Contratto</label>
+        <input type="number" name="num" class="form-control" value="" required>
+        </input>
+        <label for="id">#Cartellino</label>
+        <input type="number" name="id" class="form-control" value="" required>
+        </input>
+        <label for="start_date">Data inizio</label>
+        <input type="date" name="start_date" class="form-control" value="" required>
+        </input>
+        <label for="end_date">Data fine</label>
+        <input type="date" name="end_date" class="form-control" value="" required>
+        </input>
+        <label for="valore">Valore</label>
+        <input type="number" name="valore" class="form-control" value="" required>
+        </input>
+        <div class="mb-3">
+          <label for="cat">Tipologia</label>
+            <select class="form-select" name="kind">
+                <option value="athlete">Atleta</option>
+                <option value="coach">Allenatore</option>
+            </select>
+          </div>
+        <button type="submit" class="btn btn-primary my-3">Submit</button>
+      </div>
+    </form>
+    <table class="table table-striped m-auto">
+      <thead>
+        <tr>
+          <th scope="col">#Cartellino</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Cognome</th>
+          <th scope="col">Data inizio</th>
+          <th scope="col">Data fine</th>
+          <th scope="col">Valore</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%for all in allenatori%}
+        <tr>
+          <td>{{all.id_no}}</td>
+          <td>{{all.name}}</td>
+          <td>{{all.surname}}</td>
+          <td>{{all.starting_date}}</td>
+          <td>{{all.expiry_date}}</td>
+          <td>{{all.salary}}</td>
+        </tr>
+        {%endfor%}
+        <tr></tr>
+        {%for atl in atleti%}
+        <tr>
+          <td>{{atl.id_no}}</td>
+          <td>{{atl.name}}</td>
+          <td>{{atl.surname}}</td>
+          <td>{{atl.starting_date}}</td>
+          <td>{{atl.expiry_date}}</td>
+          <td>{{atl.salary}}</td>
+        </tr>
+        {%endfor%}
+      </tbody>
+    </table>   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  </body>
+</html>
